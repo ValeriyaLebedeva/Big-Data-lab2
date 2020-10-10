@@ -8,7 +8,7 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 
-public class WordCountApp {
+public class TimeDelayCounter {
     public static void main(String[] args) throws Exception {
         if (args.length != 2) {
             System.err.println("Usage: WordCountApp <input path> <output path>");
