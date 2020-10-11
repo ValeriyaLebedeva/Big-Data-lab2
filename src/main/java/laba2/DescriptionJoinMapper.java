@@ -6,7 +6,7 @@ import org.apache.hadoop.mapreduce.Mapper;
 
 import java.io.IOException;
 
-public class CallsJoinMapper extends Mapper<LongWritable, Text, TextPair, Text> {
+public class DescriptionJoinMapper extends Mapper<LongWritable, Text, TextPair, Text> {
     @Override
     protected void map(LongWritable key, Text value, Mapper.Context context) throws IOException, InterruptedException {
         String[] records = value.toString().split(",");
