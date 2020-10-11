@@ -10,7 +10,8 @@ public class CallsJoinMapper extends Mapper<LongWritable, Text, TextPair, Text> 
     @Override
     protected void map(LongWritable key, Text value, Mapper.Context context) throws IOException, InterruptedException {
         String[] records = value.toString().split(",");
-        String[] key_pair = [records[0],"1"]
+        String[] key_pair = new String[] 
+        [records[0],"1"]
         context.write(,
                 new Text(records[1]));
     }
