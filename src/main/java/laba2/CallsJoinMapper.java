@@ -9,7 +9,7 @@ import java.io.IOException;
 public class CallsJoinMapper extends Mapper<LongWritable, Text, TextPair, Text> {
     @Override
     protected void map(LongWritable key, Text value, Mapper.Context context) throws IOException, InterruptedException {
-        ServiceCall call = new ServiceCall(value);
+        ServiceCall call = value.toString().split(",")
         context.write(new TextPair(call.getSystemA().toString(),"1"),
                 new Text(call.toString()));
     }
