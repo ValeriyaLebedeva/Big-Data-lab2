@@ -1,2 +1,4 @@
-package laba2;public class TextPair {
+package laba2;
+
+public class TextPair {
 }
