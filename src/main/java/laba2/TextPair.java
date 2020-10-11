@@ -1,6 +1,7 @@
 package laba2;
 
 
+import com.google.common.primitives.Chars;
 import org.apache.hadoop.io.Writable;
 import org.apache.hadoop.io.WritableComparable;
 
@@ -31,24 +32,24 @@ import java.io.IOException;
 
 
 public class TextPair implements WritableComparable {
-    public int first;
-    public int second;
+    public String first;
+    public String second;
     public TextPair(){
         this.first=first;
         this.second=second;
     }
     public void write(DataOutput out) throws IOException {
-        out.writeint(a);
-        out.writeint(b);
+        out.writeChars(first);
+        out.writeChars(second);
     }
     public void readFields(DataInput in) throws IOException {
-        a = in.readint();
-        b = in.readint();
+        first = in.readLine();
+        second = in.readLine();
     }
     public int CompareTo(TextPair c){
-        int presentValue=int(this.first);
-        int CompareValue=c.first;
-        return (Integer.compare(presentValue, CompareValue));
+        String presentValue=this.first;
+        String CompareValue=c.first;
+        return (Chars.compare(presentValue, CompareValue));
     }
     public int hashCode() {
         return Integer.IntToIntBits(a)^ Integer.IntToIntBits(b);
