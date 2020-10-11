@@ -9,8 +9,8 @@ import java.io.IOException;
 public class CallsJoinMapper extends Mapper<LongWritable, Text, TextPair, Text> {
     @Override
     protected void map(LongWritable key, Text value, Mapper.Context context) throws IOException, InterruptedException {
-        String[] call = value.toString().split(",");
-        context.write(new TextPair(call.getSystemA().toString(),"1"),
-                new Text(call.toString()));
+        String[] records = value.toString().split(",");
+        context.write(new TextPair(records[0],"1"),
+                new Text(records[1]));
     }
 }
