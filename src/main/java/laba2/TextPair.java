@@ -9,25 +9,25 @@ import java.io.DataOutput;
 import java.io.IOException;
 
 
-public class TextPair implements Writable {
-    public String first;
-    public String second;
-    public TextPair(){
-        this.first=first;
-        this.second=second;
-    }
-    public void write(DataOutput out) throws IOException {
-        out.writeChars(first);
-        out.writeChars(second);
-    }
-    public void readFields(DataInput in) throws IOException {
-        a = in.readInt();
-        b = in.readInt();
-    }
-    public String toString() {
-        return Integer.toString(a) + ", " + Integer.toString(b)
-    }
-}
+//public class TextPair implements Writable {
+//    public String first;
+//    public String second;
+//    public TextPair(){
+//        this.first=first;
+//        this.second=second;
+//    }
+//    public void write(DataOutput out) throws IOException {
+//        out.writeChars(first);
+//        out.writeChars(second);
+//    }
+//    public void readFields(DataInput in) throws IOException {
+//        first = in.readLine();
+//        second = in.readLine();
+//    }
+//    public String toString() {
+//        return first + ", " + second;
+//    }
+//}
 
 
 public class TextPair implements WritableComparable {
@@ -45,10 +45,10 @@ public class TextPair implements WritableComparable {
         a = in.readint();
         b = in.readint();
     }
-    public int CompareTo(add c){
-        int presentValue=this.value;
-        int CompareValue=c.value;
-        return (presentValue < CompareValue ? -1 : (presentValue==CompareValue ? 0 : 1));
+    public int CompareTo(TextPair c){
+        int presentValue=int(this.first);
+        int CompareValue=c.first;
+        return (Integer.compare(presentValue, CompareValue));
     }
     public int hashCode() {
         return Integer.IntToIntBits(a)^ Integer.IntToIntBits(b);
