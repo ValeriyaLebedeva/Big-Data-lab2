@@ -34,7 +34,7 @@ import java.io.IOException;
 public class TextPair implements WritableComparable {
     public String first;
     public String second;
-    public TextPair(){
+    public TextPair(String first, String second){
         this.first=first;
         this.second=second;
     }
