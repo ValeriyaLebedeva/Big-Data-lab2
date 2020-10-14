@@ -47,7 +47,7 @@ public class TextPair implements WritableComparable {
         second = in.readLine();
     }
     public int CompareTo(TextPair c){
-        int presentValue=this.first);
+        int presentValue=(int)this.first;
         int compareValue=c.first;
         return (intpresentValue < compareValue ? -1 : (presentValue==compareValue ? 0 : 1));
     }
