@@ -47,9 +47,9 @@ public class TextPair implements WritableComparable {
         second = in.readLine();
     }
     public int CompareTo(TextPair c){
-        int presentValue=(int)this.first;
-        int compareValue=c.first;
-        return (intpresentValue < compareValue ? -1 : (presentValue==compareValue ? 0 : 1));
+        int presentValue=Integer.parseInt(this.first);
+        int compareValue=Integer.parseInt(c.first);
+        return (Integer.compare(presentValue, compareValue));
     }
     public int hashCode() {
         return Integer.IntToIntBits(a)^ Integer.IntToIntBits(b);
