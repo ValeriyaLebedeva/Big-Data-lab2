@@ -6,13 +6,13 @@ import org.apache.hadoop.mapreduce.Mapper;
 
 import java.io.IOException;
 
-public class TimeJoinMapper extends Mapper<LongWritable, Text, TextPair, Text> {
+public class TimeMapper extends Mapper<LongWritable, Text, KeyPair, Text> {
     @Override
     protected void map(LongWritable key, Text value, Mapper.Context context) throws IOException, InterruptedException {
         String[] records = value.toString().split(",");
-        String delay_time = records[18];
-        String airport_id = records[14];
-        TextPair key_pair = new TextPair(airport_id, "1");
-        context.write(key_pair, new Text(delay_time));
+        Text delay_time = new Text(records[18]);
+        Text airport_id = new Text(records[14]);
+        KeyPair key_pair = new KeyPair(airport_id, new Text("1"));
+        context.write(key_pair, delay_time);
     }
 }

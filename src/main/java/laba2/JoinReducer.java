@@ -1,20 +1,17 @@
 package laba2;
 
-import org.apache.hadoop.io.IntWritable;
-import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 
 import java.io.IOException;
 import java.util.Iterator;
 
-public class JoinReducer extends Reducer<TextPair, Text, Text, Text> {
+public class JoinReducer extends Reducer<KeyPair, Text, Text, Text> {
     @Override
-    protected void reduce(TextPair key, Iterable<Text> values, Context context) throws
+    protected void reduce(KeyPair key, Iterable<Text> values, Context context) throws
             IOException, InterruptedException {
         Iterator<Text> iter = values.iterator();
         Text AirportDescription = iter.next();
-        Text idAirport = new Text(key.idAirport);
         float maxTime = Float.MIN_VALUE;
         float minTime = Float.MAX_VALUE;
         float sumTime = 0;
@@ -31,8 +28,10 @@ public class JoinReducer extends Reducer<TextPair, Text, Text, Text> {
                 minTime = time;
             }
         }
-        String meanTime = String.format("%.3f", sumTime / iterCount);
-        Text outValue = new Text(call + "\t" + AirportDescription.toString());
-        context.write(idAirport, outValue);
+        String meanTimeStr = String.format("mean: %.2f", sumTime / iterCount);
+        String maxTimeStr = String.format("max: %.2f", maxTime);
+        String minTimeStr = String.format("min: %.2f", minTime);
+        Text outValue = new Text(meanTimeStr + "\t" + maxTimeStr + "\t" + minTimeStr );
+        context.write(AirportDescription, outValue);
     }
 }

@@ -2,9 +2,9 @@ package laba2;
 
 import org.apache.hadoop.io.RawComparator;
 
-public class MyComparator implements RawComparator<TextPair> {
+public class MyComparator implements RawComparator<KeyPair> {
 
-    public int compare(TextPair a, TextPair b) {
+    public int compare(KeyPair a, KeyPair b) {
         return a.compareTo(b);
     }
 

@@ -6,12 +6,13 @@ import org.apache.hadoop.mapreduce.Mapper;
 
 import java.io.IOException;
 
-public class DescriptionJoinMapper extends Mapper<LongWritable, Text, TextPair, Text> {
+public class DescriptionMapper extends Mapper<LongWritable, Text, KeyPair, Text> {
     @Override
     protected void map(LongWritable key, Text value, Mapper.Context context) throws IOException, InterruptedException {
         String[] records = value.toString().split(",");
-        TextPair key_pair = new TextPair(records[0].replace("\"", ""),"0");
-        context.write(key_pair,
+        Text idAirport = new Text(records[0].replace("\"", ""));
+        KeyPair keyPair = new KeyPair(idAirport,new Text("0"));
+        context.write(keyPair,
                 new Text(records[1]));
     }
 }
