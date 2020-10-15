@@ -14,10 +14,11 @@ public class JoinReducer extends Reducer<TextPair, Text, Text, Text> {
             IOException, InterruptedException {
         Iterator<Text> iter = values.iterator();
         Text systemInfo = new Text(iter.next());
+        Text t = new (Text(key.first));
         while (iter.hasNext()) {
             Text call = iter.next();
             Text outValue = new Text(call.toString() + "\t" + systemInfo.toString());
-            context.write(, outValue);
+            context.write(key.first, outValue);
         }
     }
 }
