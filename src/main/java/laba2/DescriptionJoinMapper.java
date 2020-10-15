@@ -10,7 +10,7 @@ public class DescriptionJoinMapper extends Mapper<LongWritable, Text, TextPair, 
     @Override
     protected void map(LongWritable key, Text value, Mapper.Context context) throws IOException, InterruptedException {
         String[] records = value.toString().split(",");
-        TextPair key_pair = new TextPair(records[0],"1");
+        TextPair key_pair = new TextPair(records[0].replace("/"", ),"1");
         context.write(key_pair,
                 new Text(records[1]));
     }
