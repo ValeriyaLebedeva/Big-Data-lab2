@@ -31,8 +31,7 @@ public class JoinReducer extends Reducer<TextPair, Text, Text, Text> {
                 minTime = time;
             }
         }
-        float meanTime = sumTime / iterCount;
-        
+        String meanTime = String.format("%.3f", sumTime / iterCount);
         Text outValue = new Text(call + "\t" + AirportDescription.toString());
         context.write(idAirport, outValue);
     }
