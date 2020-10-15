@@ -11,9 +11,8 @@ public class TimeJoinMapper extends Mapper<LongWritable, Text, TextPair, Text> {
     protected void map(LongWritable key, Text value, Mapper.Context context) throws IOException, InterruptedException {
         String[] records = value.toString().split(",");
         String delay_time = records[18];
-        String airport_id = records[14]
-        String[] key_pair = {airport_id,"1"};
-        TextPair key_pair = new TextPair(records[0];
+        String airport_id = records[14];
+        TextPair key_pair = new TextPair(airport_id, "0");
         context.write(key_pair, delay_time);
     }
 }
