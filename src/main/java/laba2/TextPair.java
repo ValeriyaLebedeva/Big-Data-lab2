@@ -2,6 +2,7 @@ package laba2;
 
 
 import com.google.common.primitives.Chars;
+import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.Writable;
 import org.apache.hadoop.io.WritableComparable;
 
@@ -11,7 +12,7 @@ import java.io.IOException;
 
 public class TextPair implements WritableComparable {
     public String first;
-    public String second;
+    public String  second;
     public TextPair(String first, String second){
         this.first=first;
         this.second=second;
