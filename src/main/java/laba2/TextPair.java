@@ -1,9 +1,5 @@
 package laba2;
 
-
-import com.google.common.primitives.Chars;
-import org.apache.hadoop.io.Text;
-import org.apache.hadoop.io.Writable;
 import org.apache.hadoop.io.WritableComparable;
 
 import java.io.DataInput;
@@ -25,6 +21,7 @@ public class TextPair implements WritableComparable {
         first = in.readLine();
         second = in.readLine();
     }
+    @Override
     public int compareTo(TextPair c){
         int presentValue=Integer.parseInt(this.first);
         int compareValue=Integer.parseInt(c.first);
@@ -34,10 +31,5 @@ public class TextPair implements WritableComparable {
         int a = Integer.parseInt(this.first);
         int b = Integer.parseInt(this.second);
         return a*10+b;
-    }
-
-    @Override
-    public int compareTo(Object o) {
-        return 0;
     }
 }
