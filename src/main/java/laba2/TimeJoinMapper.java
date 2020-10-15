@@ -12,7 +12,7 @@ public class TimeJoinMapper extends Mapper<LongWritable, Text, TextPair, Text> {
         String[] records = value.toString().split(",");
         String delay_time = records[18];
         String airport_id = records[14];
-        TextPair key_pair = new TextPair(airport_id, "0");
+        TextPair key_pair = new TextPair(airport_id, "1");
         context.write(key_pair, delay_time);
     }
 }

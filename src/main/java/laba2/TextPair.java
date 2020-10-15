@@ -8,21 +8,20 @@ import java.io.IOException;
 
 public class TextPair implements WritableComparable {
     public String idAirport;
-    public String  numTable;
-    public TextPair(String idAirport, String numTable){
-        this.idAirport =idAirport;
-        this.numTable=numTable;
+    public String mark;
+    public TextPair(String idAirport, String mark){
+        this.idAirport = idAirport;
+        this.mark = mark;
     }
     public void write(DataOutput out) throws IOException {
         out.writeChars(idAirport);
-        out.writeChars(numTable);
+        out.writeChars(mark);
     }
     public void readFields(DataInput in) throws IOException {
         idAirport = in.readLine();
-        numTable = in.readLine();
+        mark = in.readLine();
     }
 
-    @Override
     public int compareTo(TextPair c){
         int presentValue=Integer.parseInt(this.idAirport);
         int compareValue=Integer.parseInt(c.idAirport);
@@ -30,7 +29,7 @@ public class TextPair implements WritableComparable {
     }
     public int hashCode() {
         int a = Integer.parseInt(this.idAirport);
-        int b = Integer.parseInt(this.numTable);
+        int b = Integer.parseInt(this.mark);
         return a*10+b;
     }
 }
