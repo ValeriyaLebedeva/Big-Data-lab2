@@ -33,9 +33,4 @@ public class TextPair implements WritableComparable {
         int b = Integer.parseInt(this.second);
         return a*10+b;
     }
-
-    @Override
-    public int compareTo(Object o) {
-        return 0;
-    }
 }
