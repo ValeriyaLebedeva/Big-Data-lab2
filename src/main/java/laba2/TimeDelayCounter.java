@@ -15,10 +15,10 @@ public class TimeDelayCounter {
             System.exit(-1);
         }
         Job job = Job.getInstance();
-        job.setJarByClass(JoinJob.class);
+        job.setJarByClass(TimeDelayCounter.class);
         job.setJobName("JoinJob sort");
-        MultipleInputs.addInputPath(job, new Path(args[0]), TextInputFormat.class, DescriptionJoinMapper.class);
-        MultipleInputs.addInputPath(job, new Path(args[1]), TextInputFormat.class, TimeJoinMapper.class);
+        MultipleInputs.addInputPath(job, new Path(args[0]), TextInputFormat.class, TimeJoinMapper.class);
+        MultipleInputs.addInputPath(job, new Path(args[1]), TextInputFormat.class, DescriptionJoinMapper.class);
         FileOutputFormat.setOutputPath(job, new Path(args[2]));
         job.setPartitionerClass(TextPair.FirstPartitioner.class);
         job.setGroupingComparatorClass(TextPair.FirstComparator.class);
