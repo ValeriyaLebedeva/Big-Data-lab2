@@ -21,7 +21,6 @@ public class TextPair implements WritableComparable {
         idAirport = in.readLine();
         mark = in.readLine();
     }
-
     public int compareTo(TextPair c){
         int presentValue=Integer.parseInt(this.idAirport);
         int compareValue=Integer.parseInt(c.idAirport);
