@@ -1,2 +1,4 @@
-package laba2;public class Partitioner {
+package laba2;
+
+public class Partitioner {
 }
