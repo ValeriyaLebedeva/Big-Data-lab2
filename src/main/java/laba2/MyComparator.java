@@ -1,4 +1,9 @@
 package laba2;
 
-public class MyComparator {
-}
+import org.apache.hadoop.io.RawComparator;
+
+public class MyComparator implements RawComparator {
+...
+    public int compare(WritableComparable a, WritableComparable b) {
+        return a.compareTo(b);
+    }}
