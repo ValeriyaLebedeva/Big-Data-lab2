@@ -1,8 +1,9 @@
 package laba2;
 
 import org.apache.hadoop.io.RawComparator;
+import org.apache.hadoop.io.WritableComparator;
 
-public class MyComparator implements RawComparator {
+public class MyComparator implements WritableComparator {
 
     public int compare(TextPair a, TextPair b) {
         return a.compareTo(b);
