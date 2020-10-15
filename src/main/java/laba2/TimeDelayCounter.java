@@ -22,7 +22,7 @@ public class TimeDelayCounter {
         MultipleInputs.addInputPath(job, new Path(args[1]), TextInputFormat.class, DescriptionJoinMapper.class);
         FileOutputFormat.setOutputPath(job, new Path(args[2]));
         job.setPartitionerClass(MyPartitioner.class);
-        job.setGroupingComparatorClass(TextPair.FirstComparator.class);
+        job.setGroupingComparatorClass(MyComparator.class);
         job.setReducerClass(JoinReducer.class);
         job.setMapOutputKeyClass(TextPair.class);
         job.setOutputKeyClass(Text.class);
