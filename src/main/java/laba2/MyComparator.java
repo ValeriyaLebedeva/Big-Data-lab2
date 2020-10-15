@@ -1,5 +1,7 @@
 package laba2;
 
+import org.apache.hadoop.io.WritableComparable;
+
 public class MyComparator implements WritableComparable<TextPair> {
 
     public int compare(TextPair a, TextPair b) {
