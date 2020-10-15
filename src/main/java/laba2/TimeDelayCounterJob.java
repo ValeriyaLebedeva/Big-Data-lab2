@@ -12,7 +12,7 @@ public class TimeDelayCounterJob {
     public static final int numReduceTasks = 2;
     public static void main(String[] args) throws Exception {
         if (args.length != 3) {
-            System.err.println("Usage: TimeDelayCounter <l_airport_id path> <t_ontime path> <output path>");
+            System.err.println("Usage:  TimeDelayCounter <l_airport_id path> <t_ontime path> <output path>");
             System.exit(-1);
         }
         Job job = Job.getInstance();
