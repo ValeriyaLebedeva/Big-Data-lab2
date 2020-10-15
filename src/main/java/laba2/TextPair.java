@@ -6,7 +6,7 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-public class TextPair implements WritableComparable {
+public class TextPair implements WritableComparable<TextPair> {
     public String idAirport;
     public String mark;
     public TextPair(String idAirport, String mark){
