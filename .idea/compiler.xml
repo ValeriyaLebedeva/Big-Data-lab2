@@ -7,7 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="laba2" />
-        <module name="lab2" />
+        <module name="hadoop-labs" />
       </profile>
     </annotationProcessing>
   </component>
