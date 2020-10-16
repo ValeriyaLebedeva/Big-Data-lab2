@@ -10,10 +10,9 @@ public class DescriptionMapper extends Mapper<LongWritable, Text, KeyPair, Text>
     @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
         String str = value.toString();
-        int numSpitter = str.indexOf(",");
-        String idAirport = str.substring(1, numSpitter-1);
-        System.out.println(AirportDescription.toString());
-        String description = str.substring(numSpitter+1);
+        int numSplitter = str.indexOf(",");
+        String idAirport = str.substring(1, numSplitter-1);
+        String description = str.substring(numSplitter+1).replace("\"", "");
         context.write(new KeyPair(new Text(idAirport), new Text("0")), new Text(description));
     }
 }
