@@ -27,10 +27,10 @@ public class KeyPair implements WritableComparable<KeyPair> {
         idAirport = new Text(in.readUTF());
         mark = new Text(in.readUTF());
     }
-    public int compareTo(KeyPair c){
-        int r1 =  this.idAirport.toString().compareTo(c.idAirport.toString());
+    public int compareTo(KeyPair k){
+        int  =  this.idAirport.toString().compareTo(k.idAirport.toString());
         if (r1 == 0 ){
-            return this.mark.toString().compareTo(c.mark.toString());
+            return this.mark.toString().compareTo(k.mark.toString());
         } else {
             return r1;
         }
