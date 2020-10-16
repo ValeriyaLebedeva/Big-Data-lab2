@@ -28,14 +28,13 @@ public class KeyPair implements WritableComparable<KeyPair> {
         mark = new Text(in.readUTF());
     }
     public int compareTo(KeyPair k){
-        int  =  this.idAirport.toString().compareTo(k.idAirport.toString());
-        if (r1 == 0 ){
+        int sign =  this.idAirport.toString().compareTo(k.idAirport.toString());
+        if (sign == 0 ){
             return this.mark.toString().compareTo(k.mark.toString());
         } else {
-            return r1;
+            return sign;
         }
     }
-
     public Text getIdAirport() {
         return this.idAirport;
     }
