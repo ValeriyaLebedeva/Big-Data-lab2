@@ -10,6 +10,7 @@ public class TimeMapper extends Mapper<LongWritable, Text, KeyPair, Text> {
     @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
         String[] records = value.toString().split(",");
+
         if (records[18].length() > 0) {
             Text delay_time = new Text(records[18]);
             Text airport_id = new Text(records[14]);
