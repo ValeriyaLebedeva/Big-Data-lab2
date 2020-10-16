@@ -56,5 +56,4 @@ public class JoinReducer extends Reducer<KeyPair, Text, Text, Text> {
             context.write(key.idAirport, new Text(" Name:  " + name + " average: " + average + " max: " + max + " min: " + min));
         }
     }
-    }
 }
