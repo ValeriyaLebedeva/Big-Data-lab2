@@ -11,7 +11,6 @@ public class JoinReducer extends Reducer<KeyPair, Text, Text, Text> {
             IOException, InterruptedException {
         Iterator<Text> iter = values.iterator();
         Text AirportDescription = new Text(iter.next().toString());
-        System.out.println(AirportDescription.toString());
         float maxTime = Float.MIN_VALUE * -1;
         float minTime = Float.MAX_VALUE;
         float sumTime = 0;
@@ -35,7 +34,6 @@ public class JoinReducer extends Reducer<KeyPair, Text, Text, Text> {
             String maxTimeStr = String.format("max: %.2f", maxTime);
             String minTimeStr = String.format("min: %.2f", minTime);
             Text outValue = new Text("Time delay: " + meanTimeStr + "\t" + maxTimeStr + "\t" + minTimeStr );
-            System.out.println(AirportDescription.toString());
             context.write(AirportDescription, outValue);
         }
     }
