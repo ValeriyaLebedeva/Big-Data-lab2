@@ -17,14 +17,15 @@ public class TimeDelayCounterJob {
         }
         Job job = Job.getInstance();
         job.setJarByClass(TimeDelayCounterJob.class);
-        job.setJobName("TimeDelayCounter sort");
-        MultipleInputs.addInputPath(job, new Path(args[0]), TextInputFormat.class, DescriptionMapper.class);
-        MultipleInputs.addInputPath(job, new Path(args[1]), TextInputFormat.class, TimeMapper.class);
+        job.setJobName("TimeDelayCounter");
+        MultipleInputs.addInputPath(job, new Path(args[0]), TextInputFormat.class, TimeMapper.class);
+        MultipleInputs.addInputPath(job, new Path(args[1]), TextInputFormat.class, DescriptionMapper.class);
         FileOutputFormat.setOutputPath(job, new Path(args[2]));
         job.setPartitionerClass(MyPartitioner.class);
         job.setGroupingComparatorClass(MyComparator.class);
         job.setReducerClass(JoinReducer.class);
         job.setMapOutputKeyClass(KeyPair.class);
+        job.setMapOutputValueClass(Text.class);
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(Text.class);
         job.setNumReduceTasks(TimeDelayCounterJob.numReduceTasks);
