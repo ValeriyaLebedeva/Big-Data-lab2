@@ -11,6 +11,7 @@ public class JoinReducer extends Reducer<KeyPair, Text, Text, Text> {
             IOException, InterruptedException {
         Iterator<Text> iter = values.iterator();
         Text AirportDescription = new Text(iter.next().toString());
+        System.out.println(AirportDescription.toString());
         float maxTime = Float.MIN_VALUE * -1;
         float minTime = Float.MAX_VALUE;
         float sumTime = 0;
