@@ -30,10 +30,10 @@ public class JoinReducer extends Reducer<KeyPair, Text, Text, Text> {
             }
         }
         if (iterCount > 0) {
-            String meanTimeStr = String.format("mean: %.2f", sumTime / iterCount);
-            String maxTimeStr = String.format("max: %.2f", maxTime);
-            String minTimeStr = String.format("min: %.2f", minTime);
-            Text outValue = new Text("Time delay: " + meanTimeStr + "\t" + maxTimeStr + "\t" + minTimeStr );
+            String meanTimeStr = String.format("\"mean\": %.2f", sumTime / iterCount);
+            String maxTimeStr = String.format("\"max\": %.2f", maxTime);
+            String minTimeStr = String.format("\"min\": %.2f", minTime);
+            Text outValue = new Text("{\"Time delay\": [{" + meanTimeStr + "}, {" + maxTimeStr + "}, {" + minTimeStr + "}]}" );
             context.write(AirportDescription, outValue);
         }
     }
