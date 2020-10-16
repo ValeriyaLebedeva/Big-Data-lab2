@@ -1,0 +1,136 @@
+"10135"	"Allentown/Bethlehem/Easton, PA: Lehigh Valley International"  mean: 15,40	max: 23,00	min: 11,00
+"10140"	"Albuquerque, NM: Albuquerque International Sunport"  mean: 19,84	max: 126,00	min: 1,00
+"10146"	"Albany, GA: Southwest Georgia Regional"  mean: 19,40	max: 34,00	min: 12,00
+"10155"	"Waco, TX: Waco Regional"  mean: 26,22	max: 74,00	min: 4,00
+"10157"	"Arcata/Eureka, CA: Arcata"  mean: 64,67	max: 96,00	min: 11,00
+"10397"	"Atlanta, GA: Hartsfield-Jackson Atlanta International"  mean: 33,40	max: 653,00	min: 1,00
+"10423"	"Austin, TX: Austin - Bergstrom International"  mean: 29,62	max: 340,00	min: 1,00
+"10434"	"Scranton/Wilkes-Barre, PA: Wilkes Barre Scranton International"  mean: 11,75	max: 20,00	min: 1,00
+"10469"	"Kalamazoo, MI: Kalamazoo/Battle Creek International"  mean: 54,63	max: 122,00	min: 1,00
+"10551"	"Bethel, AK: Bethel Airport"  mean: 9,00	max: 9,00	min: 9,00
+"10599"	"Birmingham, AL: Birmingham-Shuttlesworth International"  mean: 30,82	max: 154,00	min: 1,00
+"10627"	"Bismarck/Mandan, ND: Bismarck Municipal"  mean: 44,40	max: 272,00	min: 2,00
+"10685"	"Bloomington/Normal, IL: Central Illinois Regional"  mean: 51,83	max: 241,00	min: 3,00
+"10713"	"Boise, ID: Boise Air Terminal"  mean: 27,88	max: 122,00	min: 1,00
+"10728"	"Beaumont/Port Arthur, TX: Jack Brooks Regional"  mean: 23,50	max: 36,00	min: 14,00
+"10731"	"Brunswick, GA: Brunswick Golden Isles"  mean: 94,00	max: 187,00	min: 1,00
+"10739"	"Brainerd, MN: Brainerd Lakes Regional"  mean: 6,00	max: 6,00	min: 6,00
+"10779"	"Butte, MT: Bert Mooney"  mean: 10,50	max: 12,00	min: 9,00
+"10821"	"Baltimore, MD: Baltimore/Washington International Thurgood Marshall"  mean: 30,64	max: 475,00	min: 1,00
+"10849"	"Bozeman, MT: Bozeman Yellowstone International"  mean: 53,73	max: 214,00	min: 1,00
+"10874"	"Akron, OH: Akron-Canton Regional"  mean: 19,76	max: 83,00	min: 1,00
+"10926"	"Cordova, AK: Merle K Mudhole Smith"  mean: 76,00	max: 151,00	min: 1,00
+"10980"	"Chattanooga, TN: Lovell Field"  mean: 29,38	max: 124,00	min: 2,00
+"11013"	"Sault Ste. Marie, MI: Chippewa County International"  mean: 45,67	max: 123,00	min: 3,00
+"11042"	"Cleveland, OH: Cleveland-Hopkins International"  mean: 39,29	max: 326,00	min: 1,00
+"11057"	"Charlotte, NC: Charlotte Douglas International"  mean: 25,71	max: 263,00	min: 1,00
+"11066"	"Columbus, OH: Port Columbus International"  mean: 40,43	max: 315,00	min: 1,00
+"11097"	"Cody, WY: Yellowstone Regional"  mean: 9,33	max: 25,00	min: 1,00
+"11109"	"Colorado Springs, CO: City of Colorado Springs Municipal"  mean: 45,05	max: 224,00	min: 3,00
+"11150"	"Columbus, GA: Columbus Airport"  mean: 39,75	max: 63,00	min: 19,00
+"11259"	"Dallas, TX: Dallas Love Field"  mean: 27,53	max: 278,00	min: 1,00
+"11413"	"Durango, CO: Durango La Plata County"  mean: 34,29	max: 122,00	min: 4,00
+"11433"	"Detroit, MI: Detroit Metro Wayne County"  mean: 34,87	max: 514,00	min: 1,00
+"11471"	"Eau Claire, WI: Chippewa Valley Regional"  mean: 110,75	max: 264,00	min: 3,00
+"11503"	"Eagle, CO: Eagle County Regional"  mean: 42,67	max: 124,00	min: 1,00
+"11525"	"Elko, NV: Elko Regional"  mean: 26,67	max: 59,00	min: 10,00
+"11587"	"Escanaba, MI: Delta County"  mean: 140,00	max: 245,00	min: 35,00
+"11624"	"Key West, FL: Key West International"  mean: 3,00	max: 3,00	min: 3,00
+"11637"	"Fargo, ND: Hector International"  mean: 28,48	max: 127,00	min: 1,00
+"11648"	"Kalispell, MT: Glacier Park International"  mean: 26,38	max: 77,00	min: 4,00
+"11695"	"Flagstaff, AZ: Flagstaff Pulliam"  mean: 47,00	max: 112,00	min: 3,00
+"11697"	"Fort Lauderdale, FL: Fort Lauderdale-Hollywood International"  mean: 32,90	max: 269,00	min: 1,00
+"11721"	"Flint, MI: Bishop International"  mean: 46,14	max: 171,00	min: 1,00
+"11778"	"Fort Smith, AR: Fort Smith Regional"  mean: 19,38	max: 93,00	min: 4,00
+"11884"	"Spokane, WA: Spokane International"  mean: 25,58	max: 117,00	min: 1,00
+"11905"	"Longview, TX: East Texas Regional"  mean: 48,67	max: 92,00	min: 12,00
+"11921"	"Grand Junction, CO: Grand Junction Regional"  mean: 12,75	max: 39,00	min: 1,00
+"11996"	"Greer, SC: Greenville-Spartanburg International"  mean: 42,52	max: 149,00	min: 3,00
+"12003"	"Great Falls, MT: Great Falls International"  mean: 25,50	max: 89,00	min: 1,00
+"12007"	"Columbus, MS: Golden Triangle Regional"  mean: 26,50	max: 42,00	min: 11,00
+"12012"	"Gunnison, CO: Gunnison-Crested Butte Regional"  mean: 98,00	max: 154,00	min: 42,00
+"12016"	"Guam, TT: Guam International"  mean: 13,00	max: 22,00	min: 4,00
+"12094"	"Hayden, CO: Yampa Valley"  mean: 17,67	max: 48,00	min: 2,00
+"12173"	"Honolulu, HI: Honolulu International"  mean: 25,00	max: 1013,00	min: 1,00
+"12177"	"Hobbs, NM: Lea County Regional"  mean: 26,67	max: 73,00	min: 2,00
+"12191"	"Houston, TX: William P Hobby"  mean: 25,88	max: 171,00	min: 1,00
+"12197"	"White Plains, NY: Westchester County"  mean: 40,89	max: 233,00	min: 1,00
+"12265"	"Niagara Falls, NY: Niagara Falls International"  mean: 32,00	max: 38,00	min: 26,00
+"12278"	"Wichita, KS: Wichita Dwight D Eisenhower National"  mean: 51,63	max: 186,00	min: 1,00
+"12320"	"Wilmington, DE: New Castle"  mean: 5,00	max: 5,00	min: 5,00
+"12335"	"Iron Mountain/Kingsfd, MI: Ford"  mean: 91,50	max: 114,00	min: 69,00
+"12339"	"Indianapolis, IN: Indianapolis International"  mean: 30,11	max: 262,00	min: 1,00
+"12391"	"Islip, NY: Long Island MacArthur"  mean: 42,07	max: 240,00	min: 1,00
+"12441"	"Jackson, WY: Jackson Hole"  mean: 39,35	max: 320,00	min: 1,00
+"12478"	"New York, NY: John F. Kennedy International"  mean: 37,67	max: 395,00	min: 1,00
+"12511"	"Joplin, MO: Joplin Regional"  mean: 30,33	max: 47,00	min: 12,00
+"12519"	"Jamestown, ND: Jamestown Regional"  mean: 55,00	max: 104,00	min: 5,00
+"12889"	"Las Vegas, NV: McCarran International"  mean: 29,98	max: 251,00	min: 1,00
+"12892"	"Los Angeles, CA: Los Angeles International"  mean: 31,75	max: 462,00	min: 1,00
+"12896"	"Lubbock, TX: Lubbock Preston Smith International"  mean: 23,85	max: 81,00	min: 2,00
+"12898"	"Latrobe, PA: Arnold Palmer Regional"  mean: 31,25	max: 94,00	min: 2,00
+"12915"	"Lake Charles, LA: Lake Charles Regional"  mean: 18,00	max: 43,00	min: 7,00
+"12951"	"Lafayette, LA: Lafayette Regional Paul Fournet Field"  mean: 25,14	max: 92,00	min: 1,00
+"12953"	"New York, NY: LaGuardia"  mean: 39,11	max: 331,00	min: 1,00
+"12982"	"Lihue, HI: Lihue Airport"  mean: 20,83	max: 195,00	min: 1,00
+"13158"	"Midland/Odessa, TX: Midland International"  mean: 28,04	max: 153,00	min: 1,00
+"13198"	"Kansas City, MO: Kansas City International"  mean: 28,77	max: 236,00	min: 1,00
+"13204"	"Orlando, FL: Orlando International"  mean: 32,02	max: 306,00	min: 1,00
+"13244"	"Memphis, TN: Memphis International"  mean: 33,98	max: 188,00	min: 1,00
+"13264"	"Medford, OR: Rogue Valley International - Medford"  mean: 28,50	max: 84,00	min: 3,00
+"13277"	"Montgomery, AL: Montgomery Regional"  mean: 27,67	max: 60,00	min: 3,00
+"13303"	"Miami, FL: Miami International"  mean: 30,81	max: 237,00	min: 1,00
+"13367"	"Moline, IL: Quad City International"  mean: 46,75	max: 205,00	min: 1,00
+"13422"	"Mobile, AL: Mobile Regional"  mean: 35,55	max: 100,00	min: 5,00
+"13433"	"Minot, ND: Minot International"  mean: 21,43	max: 61,00	min: 2,00
+"13459"	"Marquette, MI: Sawyer International"  mean: 175,00	max: 175,00	min: 175,00
+"13486"	"Missoula, MT: Missoula International"  mean: 6,00	max: 7,00	min: 4,00
+"13495"	"New Orleans, LA: Louis Armstrong New Orleans International"  mean: 27,72	max: 199,00	min: 1,00
+"13796"	"Oakland, CA: Metropolitan Oakland International"  mean: 29,66	max: 176,00	min: 1,00
+"13851"	"Oklahoma City, OK: Will Rogers World"  mean: 34,49	max: 150,00	min: 1,00
+"13871"	"Omaha, NE: Eppley Airfield"  mean: 27,48	max: 140,00	min: 1,00
+"13873"	"Nome, AK: Nome Airport"  mean: 11,00	max: 14,00	min: 8,00
+"13891"	"Ontario, CA: Ontario International"  mean: 22,78	max: 97,00	min: 1,00
+"13930"	"Chicago, IL: Chicago O'Hare International"  mean: 44,91	max: 529,00	min: 1,00
+"14025"	"Plattsburgh, NY: Plattsburgh International"  mean: 18,00	max: 32,00	min: 9,00
+"14027"	"West Palm Beach/Palm Beach, FL: Palm Beach International"  mean: 31,37	max: 141,00	min: 1,00
+"14098"	"Newport News/Williamsburg, VA: Newport News/Williamsburg International"  mean: 10,57	max: 16,00	min: 7,00
+"14100"	"Philadelphia, PA: Philadelphia International"  mean: 31,67	max: 336,00	min: 1,00
+"14108"	"Peoria, IL: General Downing - Peoria International"  mean: 49,72	max: 217,00	min: 2,00
+"14113"	"Pocatello, ID: Pocatello Regional"  mean: 3,33	max: 5,00	min: 2,00
+"14122"	"Pittsburgh, PA: Pittsburgh International"  mean: 30,02	max: 368,00	min: 1,00
+"14193"	"Pensacola, FL: Pensacola International"  mean: 25,57	max: 176,00	min: 1,00
+"14252"	"Pasco/Kennewick/Richland, WA: Tri Cities"  mean: 45,78	max: 115,00	min: 2,00
+"14256"	"Petersburg, AK: Petersburg James A Johnson"  mean: 8,67	max: 19,00	min: 3,00
+"14487"	"Redding, CA: Redding Municipal"  mean: 47,50	max: 134,00	min: 3,00
+"14489"	"Bend/Redmond, OR: Roberts Field"  mean: 35,60	max: 131,00	min: 2,00
+"14492"	"Raleigh/Durham, NC: Raleigh-Durham International"  mean: 28,63	max: 165,00	min: 1,00
+"14520"	"Rhinelander, WI: Rhinelander/Oneida County"  mean: 21,67	max: 49,00	min: 7,00
+"14524"	"Richmond, VA: Richmond International"  mean: 27,84	max: 175,00	min: 1,00
+"14588"	"Roswell, NM: Roswell International Air Center"  mean: 6,00	max: 10,00	min: 2,00
+"14674"	"Santa Fe, NM: Santa Fe Municipal"  mean: 16,25	max: 36,00	min: 3,00
+"14683"	"San Antonio, TX: San Antonio International"  mean: 33,53	max: 391,00	min: 1,00
+"14685"	"Savannah, GA: Savannah/Hilton Head International"  mean: 32,29	max: 201,00	min: 3,00
+"14689"	"Santa Barbara, CA: Santa Barbara Municipal"  mean: 33,11	max: 152,00	min: 1,00
+"14696"	"South Bend, IN: South Bend International"  mean: 63,63	max: 245,00	min: 1,00
+"14698"	"San Luis Obispo, CA: San Luis County Regional"  mean: 25,00	max: 123,00	min: 1,00
+"14711"	"State College, PA: University Park"  mean: 17,25	max: 33,00	min: 3,00
+"14771"	"San Francisco, CA: San Francisco International"  mean: 44,22	max: 556,00	min: 1,00
+"14814"	"Shreveport, LA: Shreveport Regional"  mean: 23,76	max: 63,00	min: 1,00
+"14843"	"San Juan, PR: Luis Munoz Marin International"  mean: 32,09	max: 209,00	min: 1,00
+"14869"	"Salt Lake City, UT: Salt Lake City International"  mean: 27,51	max: 475,00	min: 1,00
+"14908"	"Santa Ana, CA: John Wayne Airport-Orange County"  mean: 17,71	max: 127,00	min: 1,00
+"14960"	"Wichita Falls, TX: Sheppard AFB/Wichita Falls Municipal"  mean: 61,00	max: 200,00	min: 1,00
+"14986"	"Sarasota/Bradenton, FL: Sarasota/Bradenton International"  mean: 35,75	max: 178,00	min: 1,00
+"15008"	"St. Cloud, MN: St. Cloud Regional"  mean: 38,50	max: 76,00	min: 1,00
+"15024"	"Charlotte Amalie, VI: Cyril E King"  mean: 41,47	max: 167,00	min: 1,00
+"15048"	"Sioux City, IA: Sioux Gateway/Col. Bud Day Field"  mean: 18,00	max: 18,00	min: 18,00
+"15295"	"Toledo, OH: Toledo Express"  mean: 22,60	max: 40,00	min: 4,00
+"15323"	"Bristol/Johnson City/Kingsport, TN: Tri-Cities Regional TN/VA"  mean: 36,25	max: 78,00	min: 1,00
+"15356"	"Trenton, NJ: Trenton Mercer"  mean: 32,17	max: 112,00	min: 1,00
+"15370"	"Tulsa, OK: Tulsa International"  mean: 29,63	max: 140,00	min: 1,00
+"15376"	"Tucson, AZ: Tucson International"  mean: 30,10	max: 167,00	min: 1,00
+"15389"	"Twin Falls, ID: Joslin Field - Magic Valley Regional"  mean: 12,00	max: 32,00	min: 1,00
+"15411"	"Tyler, TX: Tyler Pounds Regional"  mean: 50,20	max: 149,00	min: 4,00
+"15624"	"Valparaiso, FL: Northwest Florida Regional"  mean: 18,18	max: 79,00	min: 1,00
+"16218"	"Yuma, AZ: Yuma MCAS/Yuma International"  mean: 11,25	max: 24,00	min: 1,00
