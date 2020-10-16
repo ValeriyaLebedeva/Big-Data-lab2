@@ -8,8 +8,8 @@ import java.io.DataOutput;
 import java.io.IOException;
 
 public class KeyPair implements WritableComparable<KeyPair> {
-    public Text idAirport;
-    public Text mark;
+    private Text idAirport;
+    private Text mark;
 
     public KeyPair() {
         super();
@@ -34,5 +34,12 @@ public class KeyPair implements WritableComparable<KeyPair> {
         } else {
             return r1;
         }
+    }
+
+    public Text getIdAirport() {
+        return this.idAirport;
+    }
+    public Text getMark() {
+        return this.idAirport;
     }
 }
