@@ -35,6 +35,7 @@ public class JoinReducer extends Reducer<KeyPair, Text, Text, Text> {
             String maxTimeStr = String.format("max: %.2f", maxTime);
             String minTimeStr = String.format("min: %.2f", minTime);
             Text outValue = new Text("Time delay: " + meanTimeStr + "\t" + maxTimeStr + "\t" + minTimeStr );
+            System.out.println(AirportDescription.toString());
             context.write(AirportDescription, outValue);
         }
     }
