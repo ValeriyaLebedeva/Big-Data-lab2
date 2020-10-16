@@ -12,7 +12,7 @@ public class DescriptionMapper extends Mapper<LongWritable, Text, KeyPair, Text>
         String str = value.toString();
         int numSplitter = str.indexOf(",");
         String idAirport = str.substring(1, numSplitter-1);
-        String description = str.substring(numSplitter+1).replace("\"", "");
+        String description = str.substring(numSplitter+1);
         context.write(new KeyPair(new Text(idAirport), new Text("0")), new Text(description));
     }
 }
