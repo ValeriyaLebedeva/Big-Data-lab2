@@ -13,10 +13,6 @@ public class DescriptionMapper extends Mapper<LongWritable, Text, KeyPair, Text>
         int numSpitter = str.indexOf(",");
         String idAirport = str.substring(0, numSpitter);
         String description = str.substring(numSpitter+1);
-        if (records.length > 2) {
-            context.write(new KeyPair(new Text(records[0]), new Text("0")), new Text(records[1] + "," + records[2]));
-        } else if (records.length == 2){
-            context.write(new KeyPair(new Text(records[0]), new Text("0")), new Text(records[1]));
-        }
+        context.write(new KeyPair(new Text(idAirport), new Text("0")), new Text(description));
     }
 }
