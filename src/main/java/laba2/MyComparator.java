@@ -14,5 +14,5 @@ public class MyComparator extends WritableComparator {
         KeyPair o2 = (KeyPair) b;
         return o1.idAirport.toString().compareTo(o2.idAirport.toString());
     }
-    
+
 }
