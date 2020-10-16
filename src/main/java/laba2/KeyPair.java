@@ -35,9 +35,4 @@ public class KeyPair implements WritableComparable<KeyPair> {
             return r1;
         }
     }
-//    public int hashCode() {
-//        int a = Integer.parseInt(this.idAirport.toString());
-//        int b = Integer.parseInt(this.mark.toString());
-//        return a*10+b;
-//    }
 }
