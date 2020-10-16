@@ -3,9 +3,12 @@ package laba2;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Partitioner;
 
-public abstract class MyPartitioner extends Partitioner<KeyPair, Text> {
+import org.apache.hadoop.io.WritableComparable;
+
+public abstract class MyPartitioner extends Partitioner<WritableComparable, Text> {
     @Override
-    public int getPartition(KeyPair key, Text value, int numPartitions) {
-        return (key.hashCode() & Integer.MAX_VALUE) % numPartitions;
+    public int getPartition(WritableComparable key, Text value, int numPartitions) {
+        KeyPair o = (KeyPair) key;
+        return (o.idAirport.toString().hashCode() & Integer.MAX_VALUE) % numPartitions;
     }
 }
