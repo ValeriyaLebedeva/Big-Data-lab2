@@ -1,4 +1,4 @@
-package laba2;
+package lab2;
 
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
