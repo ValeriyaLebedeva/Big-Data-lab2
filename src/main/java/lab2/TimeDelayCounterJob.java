@@ -9,7 +9,10 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 
 public class TimeDelayCounterJob {
-    private static final int numReduceTasks = 2;
+    private static final int NUM_REDUCE_TASKS = 2;
+    public static final String SPLITTER = ",";
+    public static final String MARK_TIME = "1";
+    public static final String MARK_DESCRIPTION = "0";
     public static void main(String[] args) throws Exception {
         if (args.length != 3) {
             System.err.println("Usage: TimeDelayCounter <t_ontime path> <l_airport_id path> <output path>");
@@ -28,7 +31,7 @@ public class TimeDelayCounterJob {
         job.setMapOutputValueClass(Text.class);
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(Text.class);
-        job.setNumReduceTasks(TimeDelayCounterJob.numReduceTasks);
+        job.setNumReduceTasks(TimeDelayCounterJob.NUM_REDUCE_TASKS);
         System.exit(job.waitForCompletion(true) ? 0 : 1);
     }
 }
