@@ -1,4 +1,6 @@
 package lab3;
+import org.apache.spark.api.java.JavaRDD;
+
 
 public class AirportApp {
     public static void main(String[] args) throws Exception {
