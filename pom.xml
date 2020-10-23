@@ -28,8 +28,5 @@
         </plugins>
     </build>
 </project>
-<property>
-    <name>yarn.nodemanager.pmem-check-enabled</name>
-    <value>false</value>
-</property>
+
 
