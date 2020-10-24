@@ -5,6 +5,8 @@ import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import scala.Tuple2;
 
+import java.util.Arrays;
+
 
 public class AirportApp {
     public static void main(String[] args) throws Exception {
@@ -15,6 +17,7 @@ public class AirportApp {
 //        JavaPairRDD<String, Integer> wordsWithCount = lines_desc.mapToPair(
 //                s -> new Tuple2<>(s, 1)
 //        );
+        lines_time.flatMap(s -> Arrays.asList(s.split(",")).iterator())
 
 
     }
