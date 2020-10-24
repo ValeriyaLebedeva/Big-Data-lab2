@@ -7,5 +7,6 @@ public class AirportApp {
     public static void main(String[] args) throws Exception {
         SparkConf conf = new SparkConf().setAppName("lab3");
         JavaSparkContext sc = new JavaSparkContext(conf);
+        JavaRDD<String> lines = sc.textFile("/path/to/README.md");
     }
 }
