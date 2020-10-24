@@ -14,9 +14,10 @@ public class AirportApp {
         JavaSparkContext sc = new JavaSparkContext(conf);
         JavaRDD<String> lines_time = sc.textFile("/time_data.csv");
         JavaRDD<String> lines_desc = sc.textFile("/desc_data.csv");
-        JavaPairRDD<String, String> id_desc = lines_time.map(s -> s.split(",")).mapToPair(
+        JavaPairRDD<String, String> id_desc = lines_desc.map(s -> s.split(",")).mapToPair(
                 s -> new Tuple2<>(s[0], s[1])
         );
+        id_desc.saveAsTextFile("output");
 
 
     }
