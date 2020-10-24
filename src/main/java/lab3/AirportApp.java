@@ -15,7 +15,7 @@ public class AirportApp {
 //        JavaPairRDD<String, Integer> wordsWithCount = lines_desc.mapToPair(
 //                s -> new Tuple2<>(s, 1)
 //        );
-        
+
 
     }
 }
