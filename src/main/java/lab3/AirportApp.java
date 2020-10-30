@@ -6,19 +6,52 @@ import org.apache.spark.api.java.JavaSparkContext;
 import scala.Tuple2;
 
 import java.util.Arrays;
+import java.util.List;
 
 
 public class AirportApp {
+    public static final int NUM_DELAY_TIME = 18;
+    public static final int TAIL_NUM = 9;
+    public static final int FL_NUM = 10;
+    public static final int ORIGIN_AIRPORT_ID = 11;
+    public static final int DEST_AIRPORT_ID = 14;
+    public static final int CANCELLED = 19;
     public static void main(String[] args) throws Exception {
         SparkConf conf = new SparkConf().setAppName("lab3");
         JavaSparkContext sc = new JavaSparkContext(conf);
-        JavaRDD<String> lines_time = sc.textFile("/time_data.csv");
-        JavaRDD<String> lines_desc = sc.textFile("/desc_data.csv");
-        JavaPairRDD<String, String> id_desc = lines_desc.map(s -> s.split(",")).mapToPair(
-                s -> new Tuple2<>(s[0], s[1])
+        JavaRDD<String> linesTime = sc.textFile("/user/val/time_data.csv");
+        JavaRDD<String> linesDesc = sc.textFile("/user/val/desc_data.csv");
+        JavaPairRDD<String, String> glossary = linesDesc.map(s -> s.split(",")).mapToPair(
+                s -> new Tuple2<>(removeQuotes(s[0]), removeQuotes(s[1]+s[2]))
         );
-        id_desc.saveAsTextFile("output");
+
+        JavaPairRDD<String, String> timeDelayFlight = linesTime.map(s -> s.split(",")).mapToPair(
+                s -> new Tuple2<>(removeQuotes(s[ORIGIN_AIRPORT_ID])+ ";" +removeQuotes(s[DEST_AIRPORT_ID]), s[NUM_DELAY_TIME])
+        );
+        JavaPairRDD<String, String> timeDelayMax = timeDelayFlight.groupByKey().mapValues(AirportApp::getMaxTime);
+        timeDelayMax.saveAsTextFile("output");
+
+//        String resOut = linesTime.collect().toString();
+//        System.out.println(resOut);
 
 
+
+    }
+
+    private static String getMaxTime(Iterable<String> masTime) {
+        String maxTime = "";
+        System.out.println("\n");
+        for (String t : masTime) {
+            System.out.println(t);
+            if (maxTime.compareTo(t) < 0) {
+                maxTime = t;
+            }
+        }
+        System.out.println("max: " + maxTime);
+        return maxTime;
+    }
+
+    private static String removeQuotes(String s) {
+        return s.replace("\"", "");
     }
 }
