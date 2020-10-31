@@ -31,7 +31,7 @@ public class AirportApp {
                 s -> new Tuple2<>(removeQuotes(s[ORIGIN_AIRPORT_ID])+ ";" +removeQuotes(s[DEST_AIRPORT_ID]), s[NUM_DELAY_TIME])
         );
         Broadcast<List<Tuple2<String, String>>> g = sc.broadcast(glossary.collect());
-//        Tuple2<String, String> sqwer = g.value().get("1234");
+        Tuple2<String, String> sqwer = g.value();
         final Broadcast <JavaPairRDD<String, String>> broadCastfeatureKeyClassPair = getBroadcastRDD( glossary );
         JavaPairRDD<String, String> timeDelayMax = timeDelayFlight.groupByKey().mapValues(AirportApp::getMaxTime);
         JavaPairRDD<String, String> timeDelayMaxOut = timeDelayMax.mapToPair(s ->
