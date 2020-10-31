@@ -31,8 +31,8 @@ public class AirportApp {
 
 
         JavaPairRDD<String, String> timeDelayMax = timeDelayFlight.groupByKey().mapValues(AirportApp::getMaxTime);
-        JavaPairRDD<String, String> TmeDelayMaxOut = timeDelayMax.map(s ->
-                new Tuple2<>(glossary.lookup(s._1.split(";")).get(0), s._2)
+        JavaPairRDD<Object, String> TmeDelayMaxOut = timeDelayMax.map(s ->
+                new Tuple2<>(glossary.lookup("12"), s._2)
         );
 
 
