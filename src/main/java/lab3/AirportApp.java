@@ -27,21 +27,21 @@ public class AirportApp {
         JavaRDD<String> linesDesc = sc.textFile("/user/val/desc_data.csv");
         JavaPairRDD<String, String> glossary = linesDesc.mapToPair(AirportApp::getParsedGlossary);
         Map<String, String> glossaryMap = glossary.collectAsMap();
-        JavaPairRDD<String, FlightStatistics> stat = linesTime.map(s -> s.split(",")).mapToPair(
-                s -> new Tuple2<>(removeQuotes(s[ORIGIN_AIRPORT_ID])+ ";" +removeQuotes(s[DEST_AIRPORT_ID]), new FlightStatistics(s[NUM_DELAY_TIME], s[CANCELLED]))
+//        JavaPairRDD<String, FlightStatistics> stat = linesTime.map(s -> s.split(",")).mapToPair(
+//                s -> new Tuple2<>(removeQuotes(s[ORIGIN_AIRPORT_ID])+ ";" +removeQuotes(s[DEST_AIRPORT_ID]), new FlightStatistics(s[NUM_DELAY_TIME], s[CANCELLED]))
+//        );
+        JavaPairRDD<String, String> timeDelayFlight = linesTime.map(s -> s.split(",")).mapToPair(
+                s -> new Tuple2<>(removeQuotes(s[ORIGIN_AIRPORT_ID])+ ";" +removeQuotes(s[DEST_AIRPORT_ID]), s[NUM_DELAY_TIME])
         );
-//        JavaPairRDD<String, String> timeDelayFlight = linesTime.map(s -> s.split(",")).mapToPair(
-//                s -> new Tuple2<>(removeQuotes(s[ORIGIN_AIRPORT_ID])+ ";" +removeQuotes(s[DEST_AIRPORT_ID]), s[NUM_DELAY_TIME])
-//        );
-//        JavaPairRDD<String, String> cancelledFlight = linesTime.map(s -> s.split(",")).mapToPair(
-//                s -> new Tuple2<>(removeQuotes(s[ORIGIN_AIRPORT_ID])+ ";" +removeQuotes(s[DEST_AIRPORT_ID]), s[CANCELLED])
-//        );
+        JavaPairRDD<String, String> cancelledFlight = linesTime.map(s -> s.split(",")).mapToPair(
+                s -> new Tuple2<>(removeQuotes(s[ORIGIN_AIRPORT_ID])+ ";" +removeQuotes(s[DEST_AIRPORT_ID]), s[CANCELLED])
+        );
         Broadcast <Map<String, String>> g = sc.broadcast(glossaryMap);
-        JavaPairRDD<String, FlightStatistics> readyStat = stat.groupByKey().mapValues(s -> processData(s));
-//        JavaPairRDD<String, String> timeDelayMax = timeDelayFlight.groupByKey().mapValues(AirportApp::getMaxTime);
-//        JavaPairRDD<String, String> percentCancelled = cancelledFlight.groupByKey().mapValues(AirportApp::getPercentUnderZero);
-//        JavaPairRDD<String, String> percentDelay = timeDelayFlight.groupByKey().mapValues(AirportApp::getPercentUnderZero);
-
+//        JavaPairRDD<String, FlightStatistics> readyStat = stat.groupByKey().mapValues(s -> processData(s));
+        JavaPairRDD<String, String> timeDelayMax = timeDelayFlight.groupByKey().mapValues(AirportApp::getMaxTime);
+        JavaPairRDD<String, String> percentCancelled = cancelledFlight.groupByKey().mapValues(AirportApp::getPercentUnderZero);
+        JavaPairRDD<String, String> percentDelay = timeDelayFlight.groupByKey().mapValues(AirportApp::getPercentUnderZero);
+        JavaPairRDD<String, String>
         JavaPairRDD<String, String> timeDelayMaxOut = timeDelayMax.mapToPair(s ->
                 new Tuple2<>(g.value().get(s._1.split(";")[0])+"; "+g.value().get(s._1.split(";")[1]), s._2)
         );
@@ -56,21 +56,21 @@ public class AirportApp {
 
     }
 
-    private static FlightStatistics processData(Iterable<FlightStatistics> stat) {
-        int allCount = 0;
-        int underZero = 0;
-        for (FlightStatistics s : stat) {
-            if ( !(s.isEmpty()) && Float.parseFloat(m) > 0) {
-                underZero++;
-            }
-            allCount++;
-        }
-        if (allCount!=0) {
-            return String.valueOf(underZero/(float)allCount*100);
-        } else {
-            return "0";
-        }
-    }
+//    private static FlightStatistics processData(Iterable<FlightStatistics> stat) {
+//        int allCount = 0;
+//        int underZero = 0;
+//        for (FlightStatistics s : stat) {
+//            if ( !(s.isEmpty()) && Float.parseFloat(m) > 0) {
+//                underZero++;
+//            }
+//            allCount++;
+//        }
+//        if (allCount!=0) {
+//            return String.valueOf(underZero/(float)allCount*100);
+//        } else {
+//            return "0";
+//        }
+//    }
 
     private static Tuple2<String, String> getParsedGlossary(String str) {
         int numSplitter = str.indexOf(FILE_SPLITTER);
