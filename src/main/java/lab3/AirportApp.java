@@ -25,14 +25,13 @@ public class AirportApp {
         JavaRDD<String> linesTime = sc.textFile("/user/val/time_data.csv");
         JavaRDD<String> linesDesc = sc.textFile("/user/val/desc_data.csv");
         JavaPairRDD <String, String> glossaryAsRDD = linesDesc.mapToPair(AirportApp::getParsedGlossary);
-        Map<String, String> glossaryAsMap = glossaryAsRDD.collectAsMap();
         JavaPairRDD<String, String> timeDelayFlight = linesTime.map(s -> s.split(FILE_SPLITTER)).mapToPair(
                 s -> new Tuple2<>(removeQuotes(s[ORIGIN_AIRPORT_ID]) + DELIMITER_IDS + removeQuotes(s[DEST_AIRPORT_ID]), s[NUM_DELAY_TIME])
         );
         JavaPairRDD<String, String> cancelledFlight = linesTime.map(s -> s.split(FILE_SPLITTER)).mapToPair(
                 s -> new Tuple2<>(removeQuotes(s[ORIGIN_AIRPORT_ID]) + DELIMITER_IDS + removeQuotes(s[DEST_AIRPORT_ID]), s[CANCELLED])
         );
-        Broadcast<Map<String, String>> glossaryAsBroadcast = sc.broadcast(glossaryAsMap);
+        Broadcast<Map<String, String>> glossaryAsBroadcast = sc.broadcast(glossaryAsRDD.collectAsMap());
         JavaPairRDD<String, String> timeDelayMax = timeDelayFlight.groupByKey().mapValues(AirportApp::getMaxTime);
         JavaPairRDD<String, String> percentCancelled = cancelledFlight.groupByKey().mapValues(AirportApp::getPercentUnderZero);
         JavaPairRDD<String, String> percentDelay = timeDelayFlight.groupByKey().mapValues(AirportApp::getPercentUnderZero);
