@@ -1,5 +1,4 @@
 package lab3;
-import lab2.TimeDelayCounterJob;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
@@ -7,7 +6,6 @@ import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.broadcast.Broadcast;
 import scala.Tuple2;
 
-import java.util.List;
 import java.util.Map;
 
 
@@ -41,19 +39,23 @@ public class AirportApp {
         JavaPairRDD<String, String> timeDelayMax = timeDelayFlight.groupByKey().mapValues(AirportApp::getMaxTime);
         JavaPairRDD<String, String> percentCancelled = cancelledFlight.groupByKey().mapValues(AirportApp::getPercentUnderZero);
         JavaPairRDD<String, String> percentDelay = timeDelayFlight.groupByKey().mapValues(AirportApp::getPercentUnderZero);
-        JavaPairRDD<String, String>
-        JavaPairRDD<String, String> timeDelayMaxOut = timeDelayMax.mapToPair(s ->
-                new Tuple2<>(g.value().get(s._1.split(";")[0])+"; "+g.value().get(s._1.split(";")[1]), s._2)
-        );
+//        JavaPairRDD<String, String> timeDelayMaxOut = timeDelayMax.mapToPair(s ->
+//                new Tuple2<>(g.value().get(s._1.split(";")[0])+"; "+g.value().get(s._1.split(";")[1]), s._2)
+//        );
+        JavaPairRDD<String, Tuple2<Tuple2<String, String>, String>> gh = timeDelayFlight.join(percentDelay).join(percentCancelled);
+        JavaPairRDD<String, String> dataOut = gh.mapValues(AirportApp::convertTuplesToString);
 
-
-        timeDelayMaxOut.saveAsTextFile("output");
+        dataOut.saveAsTextFile("output");
 
 //        String resOut = linesTime.collect().toString();
 //        System.out.println(resOut);
 
 
 
+    }
+
+    private static String convertTuplesToString(Tuple2<Tuple2<String, String>, String> s) {
+        return "Max time delay: " + s._1._1 + "; Delay percent: " + s._1._2 + "; Cancelled percent: " + s._2() + ";";
     }
 
 //    private static FlightStatistics processData(Iterable<FlightStatistics> stat) {
