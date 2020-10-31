@@ -17,7 +17,6 @@ public class AirportApp {
     public static final int DEST_AIRPORT_ID = 14;
     public static final int CANCELLED = 19;
     private static final String FILE_SPLITTER = ",";
-//    public static final String DELIMITER_CSV = ",";
     public static final String DELIMITER_IDS = ";";
 
     public static void main(String[] args) throws Exception {
@@ -25,7 +24,8 @@ public class AirportApp {
         JavaSparkContext sc = new JavaSparkContext(conf);
         JavaRDD<String> linesTime = sc.textFile("/user/val/time_data.csv");
         JavaRDD<String> linesDesc = sc.textFile("/user/val/desc_data.csv");
-        Map<String, String> glossaryAsMap = linesDesc.mapToPair(AirportApp::getParsedGlossary).collectAsMap();
+        JavaPairRDD <String, String> glossaryAsRDD = linesDesc.mapToPair(AirportApp::getParsedGlossary);
+        Map<String, String> glossaryAsMap = glossaryAsRDD.collectAsMap();
         JavaPairRDD<String, String> timeDelayFlight = linesTime.map(s -> s.split(FILE_SPLITTER)).mapToPair(
                 s -> new Tuple2<>(removeQuotes(s[ORIGIN_AIRPORT_ID]) + DELIMITER_IDS + removeQuotes(s[DEST_AIRPORT_ID]), s[NUM_DELAY_TIME])
         );
@@ -41,7 +41,7 @@ public class AirportApp {
         JavaPairRDD<String, String> descriptionsAndData = idsAndData.mapToPair(s ->
                 new Tuple2<>(glossaryAsBroadcast.value().get(s._1.split(FILE_SPLITTER)[0])+"; "+glossaryAsBroadcast.value().get(s._1.split(FILE_SPLITTER)[1]), s._2)
         );
-        statsAsTuples.saveAsTextFile("output");
+        glossaryAsRDD.saveAsTextFile("output");
 
     }
 
