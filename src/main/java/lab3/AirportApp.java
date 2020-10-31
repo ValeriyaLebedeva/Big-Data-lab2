@@ -22,7 +22,7 @@ public class AirportApp {
         JavaRDD<String> linesTime = sc.textFile("/user/val/time_data.csv");
         JavaRDD<String> linesDesc = sc.textFile("/user/val/desc_data.csv");
         JavaPairRDD<String, String> glossary = linesDesc.map(s -> s.split(",")).mapToPair(
-                s -> new Tuple2<>(removeQuotes(s[0]), removeQuotes(s[1]+s[2]))
+                s -> new Tuple2<>(removeQuotes(s[0]), removeQuotes(s[1]))
         );
 
         JavaPairRDD<String, String> timeDelayFlight = linesTime.map(s -> s.split(",")).mapToPair(
