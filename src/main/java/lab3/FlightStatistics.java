@@ -4,8 +4,10 @@ public class FlightStatistics {
     String percentCancelled;
     String percentDelay;
     String timeDelay;
-    FlightStatistics(String pC, String pD, String tD) {
-        this.percentCancelled = p
-    }
 
+    public FlightStatistics(String percentCancelled, String percentDelay, String timeDelay) {
+        this.percentCancelled = percentCancelled;
+        this.percentDelay = percentDelay;
+        this.timeDelay = timeDelay;
+    }
 }
