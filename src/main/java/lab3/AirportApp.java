@@ -36,8 +36,8 @@ public class AirportApp {
         JavaPairRDD<String, String> timeDelayMax = timeDelayFlight.groupByKey().mapValues(AirportApp::getMaxTime);
         JavaPairRDD<String, String> percentCancelled = cancelledFlight.groupByKey().mapValues(AirportApp::getPercentUnderZero);
         JavaPairRDD<String, String> percentDelay = timeDelayFlight.groupByKey().mapValues(AirportApp::getPercentUnderZero);
-        JavaPairRDD<String, Tuple2<Tuple2<String, String>, String>> gh = timeDelayMax.join(percentDelay).join(percentCancelled);
-        JavaPairRDD<String, String> idsAndData = gh.mapValues(AirportApp::convertTuplesToString);
+        JavaPairRDD<String, Tuple2<Tuple2<String, String>, String>> statsAsTuples = timeDelayMax.join(percentDelay).join(percentCancelled);
+        JavaPairRDD<String, String> idsAndData = statsAsTuples.mapValues(AirportApp::convertTuplesToString);
         JavaPairRDD<String, String> descriptionsAndData = idsAndData.mapToPair(s ->
                 new Tuple2<>(glossaryAsBroadcast.value().get(s._1.split(DELIMITER_CSV)[0])+"; "+glossaryAsBroadcast.value().get(s._1.split(DELIMITER_CSV)[1]), s._2)
         );
