@@ -48,7 +48,7 @@ public class AirportApp {
     }
 
 
-    private static JavaPairRDD<String, String> ff(JavaPairRDD<String, String> obj, Function<Iterable<String>, String> getNeeded) {
+    private static JavaPairRDD<String, String> ff(JavaPairRDD<String, String> obj, Function<Iterable<String>, String> getNee) {
         return obj.groupByKey().mapValues(s -> f.apply(s));
     }
 
