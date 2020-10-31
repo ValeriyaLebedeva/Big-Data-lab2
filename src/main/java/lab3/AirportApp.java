@@ -35,9 +35,9 @@ public class AirportApp {
                 s -> new Tuple2<>(removeQuotes(s[ORIGIN_AIRPORT_ID])+ DELIMETER_CSV +removeQuotes(s[DEST_AIRPORT_ID]), s[CANCELLED])
         );
         Broadcast <Map<String, String>> g = sc.broadcast(glossaryMap);
-        JavaPairRDD<String, String> timeDelayMax = timeDelayFlight.groupByKey().mapValues(AirportApp::getMaxTime);
-        JavaPairRDD<String, String> percentCancelled = cancelledFlight.groupByKey().mapValues(AirportApp::getPercentUnderZero);
-        JavaPairRDD<String, String> percentDelay = timeDelayFlight.groupByKey().mapValues(AirportApp::getPercentUnderZero);
+        JavaPairRDD<String, String> timeDelayMax = groupByKeyAndMapValues(timeDelayFlight, AirportApp::getMaxTime);
+        JavaPairRDD<String, String> percentCancelled = groupByKeyAndMapValues(cancelledFlight, AirportApp::getPercentUnderZero);
+        JavaPairRDD<String, String> percentDelay = groupByKeyAndMapValues(timeDelayFlight, AirportApp::getPercentUnderZero);
         JavaPairRDD<String, Tuple2<Tuple2<String, String>, String>> gh = timeDelayMax.join(percentDelay).join(percentCancelled);
         JavaPairRDD<String, String> idsAndData = gh.mapValues(AirportApp::convertTuplesToString);
         JavaPairRDD<String, String> descriptionsAndData = idsAndData.mapToPair(s ->
@@ -48,8 +48,8 @@ public class AirportApp {
     }
 
 
-    private static JavaPairRDD<String, String> ff(JavaPairRDD<String, String> obj, Function<Iterable<String>, String> getNecess) {
-        return obj.groupByKey().mapValues(s -> f.apply(s));
+    private static JavaPairRDD<String, String> groupByKeyAndMapValues(JavaPairRDD<String, String> obj, Function<Iterable<String>, String> getNecessaryStat) {
+        return obj.groupByKey().mapValues(getNecessaryStat::apply);
     }
 
     private static String convertTuplesToString(Tuple2<Tuple2<String, String>, String> s) {
