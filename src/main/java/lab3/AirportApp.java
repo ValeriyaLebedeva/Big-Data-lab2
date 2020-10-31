@@ -29,8 +29,10 @@ public class AirportApp {
                 s -> new Tuple2<>(removeQuotes(s[ORIGIN_AIRPORT_ID])+ ";" +removeQuotes(s[DEST_AIRPORT_ID]), s[NUM_DELAY_TIME])
         );
 
+        
         JavaPairRDD<String, String> timeDelayMax = timeDelayFlight.groupByKey().mapValues(AirportApp::getMaxTime);
-        JavaPairRDD<String, String> TmeDelayMaxOut = timeDelayMax.
+        JavaPairRDD<String, String> TmeDelayMaxOut = timeDelayMax.map(s -> s._1.split(";")[0]
+        )
 
 
         timeDelayMaxOut.saveAsTextFile("output");
