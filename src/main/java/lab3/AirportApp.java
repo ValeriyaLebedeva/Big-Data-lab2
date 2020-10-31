@@ -40,7 +40,7 @@ public class AirportApp {
     }
 
     private static String getMaxTime(Iterable<String> masTime) {
-        String maxTime = "";
+        String maxTime = "-1.00";
         for (String t : masTime) {
             if (Float.parseFloat(maxTime) < (Float.parseFloat(t))) {
                 maxTime = t;
