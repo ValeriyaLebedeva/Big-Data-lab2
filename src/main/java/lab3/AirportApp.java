@@ -29,12 +29,11 @@ public class AirportApp {
                 s -> new Tuple2<>(removeQuotes(s[ORIGIN_AIRPORT_ID])+ ";" +removeQuotes(s[DEST_AIRPORT_ID]), s[NUM_DELAY_TIME])
         );
 
-
+        String dff = glossary.lookup("123").get(0);
         JavaPairRDD<String, String> timeDelayMax = timeDelayFlight.groupByKey().mapValues(AirportApp::getMaxTime);
-        JavaPairRDD<Object, String> TmeDelayMaxOut = timeDelayMax.map(s ->
-                new Tuple2<>(glossary.lookup("12"), s._2)
+        JavaPairRDD<String, String> timeDelayMaxOut = timeDelayMax.mapToPair(s ->
+                new Tuple2<>(glossary.lookup(s._1.split(";")[0]).get(0)+"; "+glossary.lookup(s._1.split(";")[1]).get(0), s._2)
         );
-
 
         timeDelayMaxOut.saveAsTextFile("output");
 
