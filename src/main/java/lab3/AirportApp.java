@@ -4,9 +4,11 @@ import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.broadcast.Broadcast;
+import scala.Function2;
 import scala.Tuple2;
 
 import java.util.Map;
+import java.util.function.Function;
 
 
 public class AirportApp {
@@ -26,14 +28,11 @@ public class AirportApp {
         JavaRDD<String> linesDesc = sc.textFile("/user/val/desc_data.csv");
         JavaPairRDD<String, String> glossary = linesDesc.mapToPair(AirportApp::getParsedGlossary);
         Map<String, String> glossaryMap = glossary.collectAsMap();
-//        JavaPairRDD<String, FlightStatistics> stat = linesTime.map(s -> s.split(",")).mapToPair(
-//                s -> new Tuple2<>(removeQuotes(s[ORIGIN_AIRPORT_ID])+ ";" +removeQuotes(s[DEST_AIRPORT_ID]), new FlightStatistics(s[NUM_DELAY_TIME], s[CANCELLED]))
-//        );
-        JavaPairRDD<String, String> timeDelayFlight = linesTime.map(s -> s.split(",")).mapToPair(
-                s -> new Tuple2<>(removeQuotes(s[ORIGIN_AIRPORT_ID])+ ";" +removeQuotes(s[DEST_AIRPORT_ID]), s[NUM_DELAY_TIME])
+        JavaPairRDD<String, String> timeDelayFlight = linesTime.map(s -> s.split(DELIMETER_CSV)).mapToPair(
+                s -> new Tuple2<>(removeQuotes(s[ORIGIN_AIRPORT_ID])+ DELIMETER_CSV +removeQuotes(s[DEST_AIRPORT_ID]), s[NUM_DELAY_TIME])
         );
-        JavaPairRDD<String, String> cancelledFlight = linesTime.map(s -> s.split(",")).mapToPair(
-                s -> new Tuple2<>(removeQuotes(s[ORIGIN_AIRPORT_ID])+ ";" +removeQuotes(s[DEST_AIRPORT_ID]), s[CANCELLED])
+        JavaPairRDD<String, String> cancelledFlight = linesTime.map(s -> s.split(DELIMETER_CSV)).mapToPair(
+                s -> new Tuple2<>(removeQuotes(s[ORIGIN_AIRPORT_ID])+ DELIMETER_CSV +removeQuotes(s[DEST_AIRPORT_ID]), s[CANCELLED])
         );
         Broadcast <Map<String, String>> g = sc.broadcast(glossaryMap);
         JavaPairRDD<String, String> timeDelayMax = timeDelayFlight.groupByKey().mapValues(AirportApp::getMaxTime);
@@ -42,30 +41,21 @@ public class AirportApp {
         JavaPairRDD<String, Tuple2<Tuple2<String, String>, String>> gh = timeDelayMax.join(percentDelay).join(percentCancelled);
         JavaPairRDD<String, String> idsAndData = gh.mapValues(AirportApp::convertTuplesToString);
         JavaPairRDD<String, String> descriptionsAndData = idsAndData.mapToPair(s ->
-                new Tuple2<>(g.value().get(s._1.split(DELIMETER_CSV)[0])+"; "+g.value().get(s._1.split(";")[1]), s._2)
+                new Tuple2<>(g.value().get(s._1.split(DELIMETER_CSV)[0])+"; "+g.value().get(s._1.split(DELIMETER_CSV)[1]), s._2)
         );
         descriptionsAndData.saveAsTextFile("output");
+
+    }
+
+
+    private static JavaPairRDD<String, String> ff(JavaPairRDD<String, String> obj, Function<Iterable<String>, String> f) {
+        return obj.groupByKey().mapValues(s -> f(s));
     }
 
     private static String convertTuplesToString(Tuple2<Tuple2<String, String>, String> s) {
         return "Max time delay: " + s._1._1 + "; Delay percent: " + s._1._2 + "; Cancelled percent: " + s._2() + ";";
     }
 
-//    private static FlightStatistics processData(Iterable<FlightStatistics> stat) {
-//        int allCount = 0;
-//        int underZero = 0;
-//        for (FlightStatistics s : stat) {
-//            if ( !(s.isEmpty()) && Float.parseFloat(m) > 0) {
-//                underZero++;
-//            }
-//            allCount++;
-//        }
-//        if (allCount!=0) {
-//            return String.valueOf(underZero/(float)allCount*100);
-//        } else {
-//            return "0";
-//        }
-//    }
 
     private static Tuple2<String, String> getParsedGlossary(String str) {
         int numSplitter = str.indexOf(FILE_SPLITTER);
