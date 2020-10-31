@@ -17,6 +17,7 @@ public class AirportApp {
     public static final int DEST_AIRPORT_ID = 14;
     public static final int CANCELLED = 19;
     private static final String FILE_SPLITTER = ",";
+    public static final String DELIMETER_CSV = ";";
 
     public static void main(String[] args) throws Exception {
         SparkConf conf = new SparkConf().setAppName("lab3");
@@ -41,7 +42,7 @@ public class AirportApp {
         JavaPairRDD<String, Tuple2<Tuple2<String, String>, String>> gh = timeDelayMax.join(percentDelay).join(percentCancelled);
         JavaPairRDD<String, String> idsAndData = gh.mapValues(AirportApp::convertTuplesToString);
         JavaPairRDD<String, String> descriptionsAndData = idsAndData.mapToPair(s ->
-                new Tuple2<>(g.value().get(s._1.split(";")[0])+"; "+g.value().get(s._1.split(";")[1]), s._2)
+                new Tuple2<>(g.value().get(s._1.split(DELIMETER_CSV)[0])+"; "+g.value().get(s._1.split(";")[1]), s._2)
         );
         descriptionsAndData.saveAsTextFile("output");
     }
