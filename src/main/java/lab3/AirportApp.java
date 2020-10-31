@@ -3,6 +3,7 @@ import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.broadcast.Broadcast;
 import scala.Tuple2;
 
 import java.util.Arrays;
@@ -28,7 +29,7 @@ public class AirportApp {
         JavaPairRDD<String, String> timeDelayFlight = linesTime.map(s -> s.split(",")).mapToPair(
                 s -> new Tuple2<>(removeQuotes(s[ORIGIN_AIRPORT_ID])+ ";" +removeQuotes(s[DEST_AIRPORT_ID]), s[NUM_DELAY_TIME])
         );
-
+        Broadcast<List<Tuple2<String, String>>> g = sc.broadcast(glossary.collect());
         JavaPairRDD<String, String> timeDelayMax = timeDelayFlight.groupByKey().mapValues(AirportApp::getMaxTime);
         JavaPairRDD<String, String> timeDelayMaxOut = timeDelayMax.mapToPair(s ->
 //                new Tuple2<>(glossary.lookup(s._1.split(";")[0]).get(0)+"; "+glossary.lookup(s._1.split(";")[1]).get(0), s._2)
