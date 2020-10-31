@@ -1,4 +1,5 @@
 package lab3;
+import lab2.TimeDelayCounterJob;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
@@ -6,7 +7,6 @@ import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.broadcast.Broadcast;
 import scala.Tuple2;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -18,27 +18,30 @@ public class AirportApp {
     public static final int ORIGIN_AIRPORT_ID = 11;
     public static final int DEST_AIRPORT_ID = 14;
     public static final int CANCELLED = 19;
+    private static final String FILE_SPLITTER = ",";
+
     public static void main(String[] args) throws Exception {
         SparkConf conf = new SparkConf().setAppName("lab3");
         JavaSparkContext sc = new JavaSparkContext(conf);
         JavaRDD<String> linesTime = sc.textFile("/user/val/time_data.csv");
         JavaRDD<String> linesDesc = sc.textFile("/user/val/desc_data.csv");
-        JavaPairRDD<String, String> glossary = linesDesc.map(s -> s.split(",")).mapToPair(
-                s -> new Tuple2<>(removeQuotes(s[0]), removeQuotes(s[1]))
-        );
-
+        JavaPairRDD<String, String> glossary = linesDesc.mapToPair(AirportApp::getParsedGlossary);
+        Map<String, String> glossaryMap = glossary.collectAsMap();
         JavaPairRDD<String, String> timeDelayFlight = linesTime.map(s -> s.split(",")).mapToPair(
                 s -> new Tuple2<>(removeQuotes(s[ORIGIN_AIRPORT_ID])+ ";" +removeQuotes(s[DEST_AIRPORT_ID]), s[NUM_DELAY_TIME])
         );
-        Broadcast<List<Tuple2<String, String>>> g = sc.broadcast(glossary.collect());
-        Tuple2<String, String> sqwer = g.value();
-        final Broadcast <JavaPairRDD<String, String>> broadCastfeatureKeyClassPair = getBroadcastRDD( glossary );
-        JavaPairRDD<String, String> timeDelayMax = timeDelayFlight.groupByKey().mapValues(AirportApp::getMaxTime);
-        JavaPairRDD<String, String> timeDelayMaxOut = timeDelayMax.mapToPair(s ->
-                new Tuple2<>(glossary.lookup(s._1.split(";")[0]).get(0)+"; "+glossary.lookup(s._1.split(";")[1]).get(0), s._2)
-//                        new Tuple2<>(s._1.split(";")[0]+"; "+s._1.split(";")[1], s._2)
-
+        JavaPairRDD<String, String> cancelledFlight = linesTime.map(s -> s.split(",")).mapToPair(
+                s -> new Tuple2<>(removeQuotes(s[ORIGIN_AIRPORT_ID])+ ";" +removeQuotes(s[DEST_AIRPORT_ID]), s[CANCELLED])
         );
+        Broadcast <Map<String, String>> g = sc.broadcast(glossaryMap);
+        JavaPairRDD<String, String> timeDelayMax = timeDelayFlight.groupByKey().mapValues(AirportApp::getMaxTime);
+        JavaPairRDD<String, String> percentCancelled = cancelledFlight.groupByKey().mapValues(AirportApp::getPercentUnderZero);
+        JavaPairRDD<String, String> percentDelay = timeDelayFlight.groupByKey().mapValues(AirportApp::getPercentUnderZero);
+
+        JavaPairRDD<String, String> timeDelayMaxOut = timeDelayMax.mapToPair(s ->
+                new Tuple2<>(g.value().get(s._1.split(";")[0])+"; "+g.value().get(s._1.split(";")[1]), s._2)
+        );
+
 
         timeDelayMaxOut.saveAsTextFile("output");
 
@@ -47,6 +50,29 @@ public class AirportApp {
 
 
 
+    }
+
+    private static Tuple2<String, String> getParsedGlossary(String str) {
+        int numSplitter = str.indexOf(FILE_SPLITTER);
+        String idAirport = str.substring(1, numSplitter-1);
+        String description = str.substring(numSplitter+1);
+        return new Tuple2<>(removeQuotes(idAirport), removeQuotes(description));
+    }
+
+    private static String getPercentUnderZero(Iterable<String> mark) {
+        int allCount = 0;
+        int underZero = 0;
+        for (String m : mark) {
+            if ( !(m.isEmpty()) && Float.parseFloat(m) > 0) {
+                underZero++;
+            }
+            allCount++;
+        }
+        if (allCount!=0) {
+            return String.valueOf(underZero/(float)allCount*100);
+        } else {
+            return "0";
+        }
     }
 
     private static String getMaxTime(Iterable<String> masTime) {
