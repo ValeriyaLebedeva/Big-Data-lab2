@@ -39,8 +39,8 @@ public class AirportApp {
         JavaPairRDD<String, Tuple2<Tuple2<String, String>, String>> statsAsTuples = timeDelayMax.join(percentDelay).join(percentCancelled);
         JavaPairRDD<String, String> idsAndData = statsAsTuples.mapValues(AirportApp::convertTuplesToString);
         JavaPairRDD<String, String> descriptionsAndData = idsAndData.mapToPair(s ->
-                new Tuple2<>(glossaryAsBroadcast.value().get(s._1.split(FILE_SPLITTER)[0])
-                        +"; "+glossaryAsBroadcast.value().get(s._1.split(FILE_SPLITTER)[1]), s._2)
+                new Tuple2<>(glossaryAsBroadcast.value().get(s._1.split(DELIMITER_IDS)[0])
+                        +"; "+glossaryAsBroadcast.value().get(s._1.split(DELIMITER_IDS)[1]), s._2)
         );
         descriptionsAndData.saveAsTextFile("output");
 
