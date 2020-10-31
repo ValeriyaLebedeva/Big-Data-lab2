@@ -10,4 +10,5 @@ public class FlightStatistics {
         this.percentDelay = percentDelay;
         this.timeDelay = timeDelay;
     }
+
 }
