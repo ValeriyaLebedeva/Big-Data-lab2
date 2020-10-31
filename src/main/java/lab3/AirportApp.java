@@ -30,7 +30,10 @@ public class AirportApp {
         );
 
         JavaPairRDD<String, String> timeDelayMax = timeDelayFlight.groupByKey().mapValues(AirportApp::getMaxTime);
-        timeDelayMax.saveAsTextFile("output");
+        JavaPairRDD<String, String> TmeDelayMaxOut = timeDelayMax.
+
+
+        timeDelayMaxOut.saveAsTextFile("output");
 
 //        String resOut = linesTime.collect().toString();
 //        System.out.println(resOut);
