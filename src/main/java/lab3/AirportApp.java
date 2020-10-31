@@ -41,7 +41,7 @@ public class AirportApp {
         JavaPairRDD<String, String> descriptionsAndData = idsAndData.mapToPair(s ->
                 new Tuple2<>(glossaryAsBroadcast.value().get(s._1.split(FILE_SPLITTER)[0])+"; "+glossaryAsBroadcast.value().get(s._1.split(FILE_SPLITTER)[1]), s._2)
         );
-        descriptionsAndData.saveAsTextFile("output");
+        statsAsTuples.saveAsTextFile("output");
 
     }
 
