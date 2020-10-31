@@ -56,7 +56,7 @@ public class AirportApp {
 
 
     private static Tuple2<String, String> getParsedGlossary(String str) {
-        int numSplitter = str.indexOf(FILE_SPLITTER);
+        int numSplitter = str.indexOf(DELIMITER_CSV);
         String idAirport = str.substring(1, numSplitter-1);
         String description = str.substring(numSplitter+1);
         return new Tuple2<>(removeQuotes(idAirport), removeQuotes(description));
