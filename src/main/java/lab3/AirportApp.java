@@ -16,8 +16,8 @@ public class AirportApp {
     public static final int ORIGIN_AIRPORT_ID = 11;
     public static final int DEST_AIRPORT_ID = 14;
     public static final int CANCELLED = 19;
-    private static final String FILE_SPLITTER = ",";
-    public static final String DELIMITER_CSV = ";";
+//    private static final String FILE_SPLITTER = ",";
+    public static final String DELIMITER_CSV = ",";
     public static final String DELIMITER_IDS = ";";
 
     public static void main(String[] args) throws Exception {
