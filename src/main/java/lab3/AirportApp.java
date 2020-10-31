@@ -48,8 +48,8 @@ public class AirportApp {
     }
 
 
-    private static JavaPairRDD<String, String> ff(JavaPairRDD<String, String> obj, Function<Iterable<String>, String> f) {
-        return obj.groupByKey().mapValues(s -> f(s));
+    private static JavaPairRDD<String, String> ff(JavaPairRDD<String, String> obj, Function<Iterable<String>, String> getNeeded) {
+        return obj.groupByKey().mapValues(s -> f.apply(s));
     }
 
     private static String convertTuplesToString(Tuple2<Tuple2<String, String>, String> s) {
