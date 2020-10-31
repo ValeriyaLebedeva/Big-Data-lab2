@@ -32,16 +32,17 @@ public class AirportApp {
         JavaPairRDD<String, String> cancelledFlight = linesTime.map(s -> s.split(FILE_SPLITTER)).mapToPair(
                 s -> new Tuple2<>(removeQuotes(s[ORIGIN_AIRPORT_ID]) + DELIMITER_IDS + removeQuotes(s[DEST_AIRPORT_ID]), s[CANCELLED])
         );
-        Broadcast <Map<String, String>> glossaryAsBroadcast = sc.broadcast(glossaryAsMap);
+        Broadcast<Map<String, String>> glossaryAsBroadcast = sc.broadcast(glossaryAsMap);
         JavaPairRDD<String, String> timeDelayMax = timeDelayFlight.groupByKey().mapValues(AirportApp::getMaxTime);
         JavaPairRDD<String, String> percentCancelled = cancelledFlight.groupByKey().mapValues(AirportApp::getPercentUnderZero);
         JavaPairRDD<String, String> percentDelay = timeDelayFlight.groupByKey().mapValues(AirportApp::getPercentUnderZero);
         JavaPairRDD<String, Tuple2<Tuple2<String, String>, String>> statsAsTuples = timeDelayMax.join(percentDelay).join(percentCancelled);
         JavaPairRDD<String, String> idsAndData = statsAsTuples.mapValues(AirportApp::convertTuplesToString);
         JavaPairRDD<String, String> descriptionsAndData = idsAndData.mapToPair(s ->
-                new Tuple2<>(glossaryAsBroadcast.value().get(s._1.split(FILE_SPLITTER)[0])+"; "+glossaryAsBroadcast.value().get(s._1.split(FILE_SPLITTER)[1]), s._2)
+                new Tuple2<>(glossaryAsBroadcast.value().get(s._1.split(FILE_SPLITTER)[0])
+                        +"; "+glossaryAsBroadcast.value().get(s._1.split(FILE_SPLITTER)[1]), s._2)
         );
-        glossaryAsRDD.saveAsTextFile("output");
+        descriptionsAndData.saveAsTextFile("output");
 
     }
 
