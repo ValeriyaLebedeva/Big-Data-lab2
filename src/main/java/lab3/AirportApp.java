@@ -35,23 +35,15 @@ public class AirportApp {
                 s -> new Tuple2<>(removeQuotes(s[ORIGIN_AIRPORT_ID])+ ";" +removeQuotes(s[DEST_AIRPORT_ID]), s[CANCELLED])
         );
         Broadcast <Map<String, String>> g = sc.broadcast(glossaryMap);
-//        JavaPairRDD<String, FlightStatistics> readyStat = stat.groupByKey().mapValues(s -> processData(s));
         JavaPairRDD<String, String> timeDelayMax = timeDelayFlight.groupByKey().mapValues(AirportApp::getMaxTime);
         JavaPairRDD<String, String> percentCancelled = cancelledFlight.groupByKey().mapValues(AirportApp::getPercentUnderZero);
         JavaPairRDD<String, String> percentDelay = timeDelayFlight.groupByKey().mapValues(AirportApp::getPercentUnderZero);
-//        JavaPairRDD<String, String> timeDelayMaxOut = timeDelayMax.mapToPair(s ->
-//                new Tuple2<>(g.value().get(s._1.split(";")[0])+"; "+g.value().get(s._1.split(";")[1]), s._2)
-//        );
-        JavaPairRDD<String, Tuple2<Tuple2<String, String>, String>> gh = timeDelayFlight.join(percentDelay).join(percentCancelled);
-        JavaPairRDD<String, String> dataOut = gh.mapValues(AirportApp::convertTuplesToString);
-
-        dataOut.saveAsTextFile("output");
-
-//        String resOut = linesTime.collect().toString();
-//        System.out.println(resOut);
-
-
-
+        JavaPairRDD<String, Tuple2<Tuple2<String, String>, String>> gh = timeDelayMax.join(percentDelay).join(percentCancelled);
+        JavaPairRDD<String, String> idsAndData = gh.mapValues(AirportApp::convertTuplesToString);
+        JavaPairRDD<String, String> descriptionsAndData = idsAndData.mapToPair(s ->
+                new Tuple2<>(g.value().get(s._1.split(";")[0])+"; "+g.value().get(s._1.split(";")[1]), s._2)
+        );
+        descriptionsAndData.saveAsTextFile("output");
     }
 
     private static String convertTuplesToString(Tuple2<Tuple2<String, String>, String> s) {
