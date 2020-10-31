@@ -44,11 +44,7 @@ public class AirportApp {
         descriptionsAndData.saveAsTextFile("output");
 
     }
-
-
-//    private static JavaPairRDD<String, String> h(JavaPairRDD<String, String> obj, Function<Iterable<String>, String> getNecessaryStat) {
-//        return obj.groupByKey().mapValues(getNecessaryStat::apply);
-//    }
+    
 
     private static String convertTuplesToString(Tuple2<Tuple2<String, String>, String> s) {
         return "Max time delay: " + s._1._1 + "; Delay percent: " + s._1._2 + "; Cancelled percent: " + s._2() + ";";
